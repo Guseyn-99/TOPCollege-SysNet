@@ -214,3 +214,15 @@ std::string TcpSocket::Receive() const
             throw std::system_error(error, std::system_category(), "recv");
     }
 }
+
+void TcpSocket::Shutdown() const noexcept
+{
+    if (!handle_)
+        return;
+
+#ifdef _WIN32
+    ::shutdown(handle_->value, SD_BOTH);
+#else
+    ::shutdown(handle_->value, SHUT_RDWR);
+#endif
+}

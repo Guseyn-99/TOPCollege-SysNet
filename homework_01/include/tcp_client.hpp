@@ -10,4 +10,5 @@ public:
     using TcpSocket::Connect;
     using TcpSocket::Receive;
     using TcpSocket::Send;
+    using TcpSocket::Shutdown;
 };
